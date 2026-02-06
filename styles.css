@@ -30,6 +30,7 @@ h1 {
 .choices {
   display: flex;
   justify-content: space-between;
+  gap: 1.3rem;
   margin-bottom: 1.5rem;
 }
 

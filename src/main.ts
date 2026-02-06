@@ -1,16 +1,5 @@
 type Choice = 'rock' | 'paper' | 'scissors';
 
-const getUserChoice = (userInput: string): Choice | undefined => {
-  const input = userInput.toLowerCase();
-
-  if (input === 'rock' || input === 'paper' || input === 'scissors') {
-    return input;
-  } else {
-    console.log('Error, please type: rock, paper or scissors');
-    return undefined;
-  }
-};
-
 const getComputerChoice = (): Choice => {
   const randomNumber = Math.floor(Math.random() * 3);
 
@@ -49,31 +38,32 @@ const determineWinner = (
     : 'Congratulations, you won!';
 };
 
-// ✅ WAIT FOR DOM
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll<HTMLButtonElement>(
-    '.choices button'
-  );
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.choices button');
 
-  const userChoiceText = document.getElementById(
-    'user-choice'
-  ) as HTMLParagraphElement;
+  const userChoiceText = document.getElementById('user-choice');
+  const computerChoiceText = document.getElementById('computer-choice');
+  const winnerText = document.getElementById('winner');
 
-  const computerChoiceText = document.getElementById(
-    'computer-choice'
-  ) as HTMLParagraphElement;
-
-  const winnerText = document.getElementById(
-    'winner'
-  ) as HTMLParagraphElement;
+  if (!userChoiceText || !computerChoiceText || !winnerText) {
+    console.error('Missing result elements in HTML');
+    return;
+  }
 
   buttons.forEach((button) => {
     button.addEventListener('click', () => {
-      const choice = button.dataset.choice as Choice;
+      const choiceAttr = button.getAttribute('data-choice');
 
-      const userChoice = getUserChoice(choice);
-      if (!userChoice) return;
+      if (
+        choiceAttr !== 'rock' &&
+        choiceAttr !== 'paper' &&
+        choiceAttr !== 'scissors'
+      ) {
+        console.error('Invalid data-choice:', choiceAttr);
+        return;
+      }
 
+      const userChoice: Choice = choiceAttr;
       const computerChoice = getComputerChoice();
       const result = determineWinner(userChoice, computerChoice);
 
