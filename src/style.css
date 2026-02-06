@@ -1,7 +1,9 @@
+/* Reset */
 * {
   box-sizing: border-box;
 }
 
+/* Page layout */
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -14,10 +16,12 @@ body {
   height: 100vh;
 }
 
+/* Title */
 h1 {
   margin-bottom: 1rem;
 }
 
+/* Game container */
 .game {
   background: #020617;
   padding: 2rem;
@@ -27,6 +31,7 @@ h1 {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
+/* Choice buttons wrapper */
 .choices {
   display: flex;
   justify-content: space-between;
@@ -34,6 +39,7 @@ h1 {
   margin-bottom: 1.5rem;
 }
 
+/* Buttons */
 button {
   background: #2563eb;
   border: none;
@@ -50,7 +56,29 @@ button:hover {
   transform: scale(1.05);
 }
 
+button:active {
+  transform: scale(0.95);
+}
+
+/* Results text */
 .results p {
   margin: 0.5rem 0;
   font-weight: bold;
+}
+
+/* Small screens */
+@media (max-width: 400px) {
+  .game {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  .choices {
+    gap: 1rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.8rem;
+  }
 }

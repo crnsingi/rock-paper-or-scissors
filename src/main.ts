@@ -1,3 +1,5 @@
+import './style.css';
+
 type Choice = 'rock' | 'paper' | 'scissors';
 
 const getComputerChoice = (): Choice => {
@@ -39,7 +41,8 @@ const determineWinner = (
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll<HTMLButtonElement>('.choices button');
+  const buttons =
+    document.querySelectorAll<HTMLButtonElement>('.choices button');
 
   const userChoiceText = document.getElementById('user-choice');
   const computerChoiceText = document.getElementById('computer-choice');
